@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-export default function Three() {
+export default function Start() {
   const box = useRef({} as HTMLDivElement)
   const isInit = useRef(true)
 
