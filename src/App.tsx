@@ -1,12 +1,13 @@
 
+import { HashRouter } from 'react-router-dom';
 import './App.css';
-import Three from './pages/Three';
+import Main from './pages/Main';
 
 function App() {
   return (
-    <div className="App">
-      <Three />
-    </div>
+    <HashRouter>
+      <Main />
+    </HashRouter>
   );
 }
 
