@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { MButton } from 'src/components/OverButton'
+import { MButton, MDivider } from 'src/components/OverComponent'
 import MainRouter from 'src/routers/MainRouter'
 
 export default function Main() {
@@ -13,6 +13,7 @@ export default function Main() {
   return (
     <div>
       <MButton onClick={() => goTo('basic')}>three基础</MButton>
+      <MDivider />
       <MainRouter />
     </div>
   )
