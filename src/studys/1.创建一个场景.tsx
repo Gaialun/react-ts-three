@@ -1,3 +1,4 @@
+import { Button } from 'antd'
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
@@ -32,6 +33,9 @@ export default function Start() {
 
 
   return (
-    <div ref={box} />
+    <>
+      <Button>点击旋转</Button>
+      <div ref={box} />
+    </>
   )
 }
