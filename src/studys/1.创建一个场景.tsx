@@ -1,14 +1,24 @@
 import { Button } from 'antd'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 
+const colors = ['#f88e8e', '#8ef8ee', '#f0a8d8', '#c1a8f0']
 export default function Start() {
   const box = useRef({} as HTMLDivElement)
-  const isInit = useRef(true)
+  const [colorIdx, setColorIdx] = useState(0)
+  console.log('render...')
+  const material = useMemo(() => new THREE.MeshBasicMaterial({color: colors[colorIdx]}), [])
+  const geometry = new THREE.BoxGeometry(1, 1, 1)
+  const cube = useMemo(()=> new THREE.Mesh(geometry, material), [])
+  const scene = useMemo(() => new THREE.Scene(), [])
+
+
+  const updateColor = () => {
+    material.color = new THREE.Color(colors[colorIdx + 1])
+    setColorIdx(colorIdx === colors.length - 1 ? 0 : colorIdx + 1 )
+  }
 
   useEffect(() => {
-    if (!isInit.current) return
-    const scene = new THREE.Scene() /* 创建一个场景 */
     const camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000) /* 创建一个相机 */
     camera.position.z = 5
 
@@ -16,9 +26,6 @@ export default function Start() {
     renderer.setSize(window.innerWidth, window.innerHeight)
     box.current.appendChild(renderer.domElement)
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1) /* 创建一个立方体 */
-    const material = new THREE.MeshBasicMaterial({ color: 0xfcb3fd }) /* 引入材质 */
-    const cube = new THREE.Mesh(geometry, material) /* 创建一个网格 */
     scene.add(cube)
 
     const animate = () => {
@@ -27,14 +34,13 @@ export default function Start() {
       cube.rotation.y += 0.01
       renderer.render(scene, camera)
     }
-    isInit.current = false
     animate()
   }, [])
 
 
   return (
     <>
-      <Button>点击旋转</Button>
+      <Button onClick={updateColor}>点击变色</Button>
       <div ref={box} />
     </>
   )
