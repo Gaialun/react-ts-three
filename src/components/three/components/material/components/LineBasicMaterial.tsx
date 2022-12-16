@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react'
-import { Three } from 'src/studys'
+import React from 'react'
+import { Three } from 'src/components/three'
+
 import { MaterialProps } from './Material'
 
 export interface LineBasicMaterialProps extends MaterialProps {
-  
+
 }
 export default function LineBasicMaterial(props: LineBasicMaterialProps) {
 

@@ -1,21 +1,21 @@
 import { Button } from 'antd'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
 const colors = ['#f88e8e', '#8ef8ee', '#f0a8d8', '#c1a8f0']
 export default function Start() {
   const box = useRef({} as HTMLDivElement)
-  const [colorIdx, setColorIdx] = useState(0)
-  console.log('render...')
-  const material = useMemo(() => new THREE.MeshBasicMaterial({color: colors[colorIdx]}), [])
+  const colorIdx = useRef(0)
+  const material = useRef(new THREE.MeshBasicMaterial({ color: colors[colorIdx.current] }))
   const geometry = new THREE.BoxGeometry(1, 1, 1)
-  const cube = useMemo(()=> new THREE.Mesh(geometry, material), [])
-  const scene = useMemo(() => new THREE.Scene(), [])
-
+  const cube = new THREE.Mesh(geometry, material.current)
+  const scene = new THREE.Scene()
+  console.log('render...', material.current)
 
   const updateColor = () => {
-    material.color = new THREE.Color(colors[colorIdx + 1])
-    setColorIdx(colorIdx === colors.length - 1 ? 0 : colorIdx + 1 )
+    const idx = colorIdx.current
+    colorIdx.current = idx === colors.length - 1 ? 0 : idx + 1
+    material.current.color = new THREE.Color(colors[colorIdx.current])
   }
 
   useEffect(() => {
@@ -37,6 +37,13 @@ export default function Start() {
     animate()
   }, [])
 
+
+  useEffect(() => {
+    const timer = setInterval(updateColor, 1000)
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
 
   return (
     <>
