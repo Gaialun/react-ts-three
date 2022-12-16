@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2016", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2015.Promise",
+      "ESNext"
+    ], /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "allowJs": true, /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+    "checkJs": true, /* Enable error reporting in type-checked JavaScript files. */
+    "skipLibCheck": true,
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "strict": true, /* Enable all strict type-checking options. */
+    "noEmit": true, /* Disable emitting files from a compilation. */
+    "jsx": "preserve", /* Specify what JSX code is generated. */
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    "module": "ESNext", /* Specify what module code is generated. */
+    // "rootDir": "./",                                  /* Specify the root folder within your source files. */
+    "moduleResolution": "node", /* Specify how TypeScript looks up a file from a given module specifier. */
+    "baseUrl": ".", /* Specify the base directory to resolve non-relative module names. */
+  },
+  "include": [
+    "src/**/*",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "exclude": [
+    "./node_modules"
+  ],
+}
